@@ -528,8 +528,49 @@
     </div>
 </section>
 
+<style>
+    /* ... (rest of styles) ... */
+    .auspiciadores-section .institutions-grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    .auspiciadores-section .institution-card {
+        max-width: 250px;
+    }
+    /* ... (rest of styles) ... */
+</style>
+
 <!-- ============================================
-     SECCIÓN 5: Galería Científica
+     SECCIÓN 5: Auspiciadores
+     ============================================ -->
+<section class="institutions-section auspiciadores-section">
+    <div class="institutions-bg"></div>
+    <div class="container">
+        <header class="institutions-header">
+            <span class="institutions-badge"><?php echo _t('home.sponsors_badge'); ?></span>
+            <h2 class="section-title"><?php echo _t('home.sponsors_title'); ?></h2>
+            <p class="institutions-intro"><?php echo _t('home.sponsors_intro'); ?></p>
+        </header>
+
+        <div class="institutions-grid">
+            <article class="institution-card">
+                <span class="institution-role"><?php echo _t('home.sponsor_role'); ?></span>
+                <div class="institution-img">
+                    <img src="<?php echo URLROOT; ?>/img/logo_auspiciadores/biaster.png" alt="Biaster" loading="lazy">
+                </div>
+                <div class="institution-info">
+                    <h4>Biaster</h4>
+                    <p><?php echo _t('home.biaster_desc'); ?></p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     SECCIÓN 6: Galería Científica
      ============================================ -->
 <section class="gallery-section">
     <div class="gallery-section-bg"></div>
@@ -575,10 +616,26 @@
         <div class="venue-content">
             <div class="venue-video-info">
                 <div class="venue-video-wrap">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/7u0C2pi-vXk" frameborder="0" allowfullscreen
-                            title="GHL Hotel Lago Titicaca"></iframe>
-                    </div>
+                    <style>
+                            .video-container {
+                                border-radius: 16px;
+                                overflow: hidden;
+                                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                                border: 2px solid #fff;
+                                background: #000;
+                            }
+                            /* ... (rest of existing styles) ... */
+                    </style>
+
+                    <!-- ... (in the HTML section) ... -->
+                                    <div class="venue-video-wrap">
+                                        <div class="video-container">
+                                            <video width="100%" height="auto" controls preload="metadata" poster="<?php echo URLROOT; ?>/img/portadas/onta_video_poster.jpg">
+                                                <source src="<?php echo URLROOT; ?>/public/uploads/video_onta/onta_video.mp4" type="video/mp4">
+                                                Tu navegador no soporta el formato de video.
+                                            </video>
+                                        </div>
+                                    </div>
                 </div>
                 <div class="venue-desc">
                     <h3><?php echo _t('home.venue_subtitle'); ?></h3>

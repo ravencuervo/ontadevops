@@ -949,6 +949,162 @@
         }
 
         /* ──────────────────────────────────
+           PAYMENT SELECTOR
+        ────────────────────────────────── */
+        .payment-selector {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+            padding: 0 1rem;
+        }
+
+        .method-card-large {
+            cursor: pointer;
+            flex: 1;
+            max-width: 350px;
+            padding: 3rem 2rem;
+            border: 3px solid var(--border);
+            border-radius: 30px;
+            text-align: center;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .method-card-large:hover {
+            border-color: var(--pink);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .method-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 5px 15px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .method-badge.option-1 { background: var(--cream); color: #002a8d; }
+        .method-badge.option-2 { background: #fff1e6; color: #ff6b00; }
+
+        .method-logo {
+            height: 60px;
+            margin-bottom: 1.5rem;
+            object-fit: contain;
+        }
+
+        .method-title {
+            color: var(--purple);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .method-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .method-footer {
+            margin-top: 2rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .method-footer.pink { color: var(--pink); }
+        .method-footer.orange { color: #ff6b00; }
+
+        .method-card-large:hover .method-footer {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 850px) {
+            .payment-selector {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+            .method-card-large {
+                max-width: 100%;
+                width: 100%;
+                padding: 2.5rem 1.5rem;
+            }
+        }
+
+        /* ──────────────────────────────────
+           MODAL STYLES (GENERAL)
+        ────────────────────────────────── */
+        .sci-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 22, 37, 0.6);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sci-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .sci-modal-content {
+            background-color: #fff;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .sci-modal.active .sci-modal-content {
+            transform: translateY(0);
+        }
+
+        .sci-modal-close {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 2rem;
+            color: var(--muted);
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .sci-modal-close:hover {
+            color: var(--pink);
+            transform: rotate(90deg);
+        }
+
+        /* Culqi Specific */
+        .culqi-modal-inner { padding: 4rem 3rem; text-align: center; }
+        .culqi-summary-card { background: #fcfcfd; border: 1px solid #eee; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; text-align: left; }
+        .culqi-terms-box { margin-bottom: 2rem; text-align: left; background: #fff9f5; padding: 1rem; border-radius: 12px; border: 1px solid #ffe8d6; }
+
+        @media (max-width: 600px) {
+            .culqi-modal-inner { padding: 3rem 1.5rem; }
+            .culqi-summary-card { padding: 1.2rem; }
+            .culqi-summary-card h4 { font-size: 0.75rem !important; }
+        }
+
+        /* ──────────────────────────────────
            TIMELINE
         ────────────────────────────────── */
         .timeline {
@@ -2373,7 +2529,6 @@
                     <!-- ESTADO: EN PROCESO DE VERIFICACIÓN -->
                     <div class="status-verification-panel" style="text-align: center; padding: 4rem 2rem; background: var(--surface); border: 2px dashed var(--gold); border-radius: 40px; margin: 2rem 0;">
                         
-                        <img src="<?php echo URLROOT; ?>/img/objetos_onta/ontita_pagando.png" alt="Verificando" class="mascot-verification">
 
                         <div class="animate-pulse-status" style="width: 100px; height: 100px; background: var(--gold-light); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; font-size: 2.5rem;">
                             <i class="fa-solid fa-shield-heart"></i>
@@ -2416,27 +2571,21 @@
                         </div>
                     <?php endif; ?>
 
-                    <div class="payment-selector" style="display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 4rem; padding: 0 1rem;">
-                        <div class="method-card-large" onclick="openPaymentModal('bcpModal')"
-                            style="cursor: pointer; flex: 1; max-width: 350px; padding: 3rem 2rem; border: 3px solid var(--border); border-radius: 30px; text-align: center; background: #fff; position: relative; overflow: hidden;">
-                            <div class="method-badge" style="position: absolute; top: 20px; right: 20px; background: var(--cream); padding: 5px 15px; border-radius: 100px; font-size: 0.7rem; font-weight: 800; color: #002a8d; text-transform: uppercase;"><?php echo _t('dashboard.payments.option_label'); ?> 1</div>
-                            <img src="<?php echo URLROOT; ?>/img/bancos/BCP.png" alt="BCP" style="height: 60px; margin-bottom: 1.5rem; object-fit: contain;">
-                            <h4 style="color: var(--purple); margin-bottom: 1rem; font-size: 1.4rem;"><?php echo _t('dashboard.payments.bcp_title'); ?></h4>
-                            <p style="font-size: 0.9rem; color: var(--muted);"><?php echo _t('dashboard.payments.bcp_desc'); ?></p>
-                            <div style="margin-top: 2rem; color: var(--pink); font-weight: 700;"><?php echo _t('dashboard.payments.select_btn'); ?> <i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="payment-selector">
+                        <div class="method-card-large" onclick="openPaymentModal('bcpModal')">
+                            <div class="method-badge option-1"><?php echo _t('dashboard.payments.option_label'); ?> 1</div>
+                            <img src="<?php echo URLROOT; ?>/img/bancos/BCP.png" alt="BCP" class="method-logo">
+                            <h4 class="method-title"><?php echo _t('dashboard.payments.bcp_title'); ?></h4>
+                            <p class="method-desc"><?php echo _t('dashboard.payments.bcp_desc'); ?></p>
+                            <div class="method-footer pink"><?php echo _t('dashboard.payments.select_btn'); ?> <i class="fa-solid fa-arrow-right"></i></div>
                         </div>
 
-                        <div class="method-card-large" onclick="openPaymentModal('culqiModal')"
-                            style="cursor: pointer; flex: 1; max-width: 350px; padding: 3rem 2rem; border: 3px solid var(--border); border-radius: 30px; text-align: center; background: #fff; position: relative; overflow: visible;">
-                            
-                            <!-- Mascot beside Culqi -->
-                            <img src="<?php echo URLROOT; ?>/img/objetos_onta/ontita_pagando.png" alt="Ontita" class="mascot-culqi-card">
-
-                            <div class="method-badge" style="position: absolute; top: 20px; right: 20px; background: #fff1e6; padding: 5px 15px; border-radius: 100px; font-size: 0.7rem; font-weight: 800; color: #ff6b00; text-transform: uppercase;"><?php echo _t('dashboard.payments.option_label'); ?> 2</div>
-                            <img src="<?php echo URLROOT; ?>/img/bancos/culqi.png" alt="Culqi" style="height: 60px; margin-bottom: 1.5rem; object-fit: contain;">
-                            <h4 style="color: var(--purple); margin-bottom: 1rem; font-size: 1.4rem;"><?php echo _t('dashboard.payments.culqi_title'); ?></h4>
-                            <p style="font-size: 0.9rem; color: var(--muted);"><?php echo _t('dashboard.payments.culqi_desc'); ?></p>
-                            <div style="margin-top: 2rem; color: #ff6b00; font-weight: 700;"><?php echo _t('dashboard.payments.pay_now_btn'); ?> <i class="fa-solid fa-credit-card"></i></div>
+                        <div class="method-card-large" onclick="openPaymentModal('culqiModal')">
+                            <div class="method-badge option-2"><?php echo _t('dashboard.payments.option_label'); ?> 2</div>
+                            <img src="<?php echo URLROOT; ?>/img/bancos/culqi.png" alt="Culqi" class="method-logo">
+                            <h4 class="method-title"><?php echo _t('dashboard.payments.culqi_title'); ?></h4>
+                            <p class="method-desc"><?php echo _t('dashboard.payments.culqi_desc'); ?></p>
+                            <div class="method-footer orange"><?php echo _t('dashboard.payments.pay_now_btn'); ?> <i class="fa-solid fa-credit-card"></i></div>
                         </div>
                     </div>
                 <?php endif; ?>
@@ -2444,111 +2593,142 @@
         </div>
 
         <!-- ═══ MODAL BCP ═══ -->
-        <div id="bcpModal" class="sci-modal">
-            <div class="sci-modal-content"
-                style="max-width: 950px; padding: 0; border-radius: 32px; position: relative; overflow: hidden;">
-                <span class="sci-modal-close" onclick="closePaymentModal('bcpModal')"
-                    style="right: 20px; top: 15px;">&times;</span>
+        <style>
+            .bcp-modal-layout { display: flex; flex-wrap: wrap; }
+            .bcp-modal-form-side { flex: 1; min-width: 320px; padding: 2.5rem; }
+            .bcp-modal-data-side { flex: 1.2; background: #f8fafc; padding: 2.5rem; border-left: 1px solid #e2e8f0; }
+            .bcp-header-minimal { margin-bottom: 2rem; }
+            .bcp-logo-small { height: 35px; margin-bottom: 0.8rem; }
+            .bcp-modal-title { font-family: var(--font-serif); color: var(--purple); font-size: 1.8rem; margin-bottom: 0.5rem; }
+            .bcp-modal-subtitle { color: var(--muted); font-size: 0.9rem; }
+            .bcp-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .bcp-submit-btn { width: 100%; justify-content: center; padding: 1.1rem; border-radius: 12px; font-weight: 700; margin-top: 1rem; }
+            
+            .bcp-data-title { color: var(--purple); margin-bottom: 1.2rem; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+            .bcp-data-card { background: #fff; padding: 1.2rem; border-radius: 16px; border: 1px solid #e2e8f0; margin-bottom: 1.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
+            .bcp-data-card.international { background: #f0f4ff; border-color: #cbd5e1; }
+            .bcp-data-badge { position: absolute; top: 0; right: 0; padding: 4px 12px; font-size: 0.65rem; font-weight: 800; border-bottom-left-radius: 12px; }
+            .bcp-data-badge.national { background: #fee2e2; color: #991b1b; }
+            .bcp-data-badge.global { background: #dbeafe; color: #1e40af; }
+            
+            .bcp-data-item { margin-bottom: 0.8rem; }
+            .bcp-data-item:last-child { margin-bottom: 0; }
+            .bcp-label { display: block; font-weight: 700; color: var(--pink); text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.3px; margin-bottom: 2px; }
+            .bcp-value { font-size: 0.9rem; color: #1e293b; display: block; }
+            .bcp-value-mono { font-family: monospace; font-size: 1.05rem; color: #002a8d; display: block; }
+            .bcp-modal-note { font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin-top: 1rem; background: #fffbeb; padding: 10px; border-radius: 8px; border-left: 4px solid #f59e0b; }
+            
+            .voucher-preview-container { margin-top: 1rem; text-align: center; }
+            .voucher-img { width: 100%; max-width: 280px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 4px solid #fff; }
 
-                <div style="display: flex; flex-wrap: wrap;">
+            @media (max-width: 850px) {
+                .bcp-modal-form-side, .bcp-modal-data-side { padding: 2rem; flex: none; width: 100%; }
+                .bcp-modal-data-side { border-left: none; border-top: 1px solid #e2e8f0; }
+                .bcp-form-grid { grid-template-columns: 1fr; }
+            }
+        </style>
+
+        <div id="bcpModal" class="sci-modal">
+            <div class="sci-modal-content" style="max-width: 1000px; padding: 0; border-radius: 24px; overflow: hidden;">
+                <span class="sci-modal-close" onclick="closePaymentModal('bcpModal')" style="right: 20px; top: 15px;">&times;</span>
+
+                <div class="bcp-modal-layout">
                     <!-- Left Side: Form -->
-                    <div style="flex: 1; min-width: 350px; padding: 3rem;">
-                        <div style="margin-bottom: 2rem; position: relative;">
-                            <img src="<?php echo URLROOT; ?>/img/objetos_onta/ontita_pagando.png" alt="Ontita" 
-                                 style="position: absolute; top: -15px; right: 0; width: 70px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));">
-                            
-                            <img src="<?php echo URLROOT; ?>/img/bancos/BCP.png" alt="BCP"
-                                style="height: 35px; margin-bottom: 1rem;">
-                            <h2
-                                style="font-family: var(--font-serif); color: var(--purple); font-size: 1.8rem; margin-bottom: 0.5rem;">
-                                <?php echo _t('dashboard.payments.bcp_title'); ?></h2>
-                            <p style="color: var(--muted); font-size: 0.9rem;">
-                                <?php echo _t('dashboard.payments.bcp_desc'); ?></p>
+                    <div class="bcp-modal-form-side">
+                        <div class="bcp-header-minimal">
+                            <img src="<?php echo URLROOT; ?>/img/bancos/BCP.png" alt="BCP" class="bcp-logo-small">
+                            <h2 class="bcp-modal-title"><?php echo _t('dashboard.payments.bcp_title'); ?></h2>
+                            <p class="bcp-modal-subtitle"><?php echo _t('dashboard.payments.bcp_desc'); ?></p>
                         </div>
 
                         <form action="<?php echo URLROOT; ?>/payments/bcp" method="POST" enctype="multipart/form-data">
                             <?php echo csrf_field(); ?>
-                            <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+                            <div class="bcp-form-grid">
                                 <div class="form-group">
-                                    <label class="form-label" for="operation_number"
-                                        style="font-weight: 700; font-size: 0.8rem;"><?php echo _t('dashboard.payments.form_op'); ?></label>
-                                    <input type="text" id="operation_number" name="operation_number" class="form-input" required
-                                        placeholder="Ej: 015482" style="padding: 0.8rem; border-radius: 10px;">
+                                    <label class="form-label" style="font-weight:700; font-size:0.75rem;"><?php echo _t('dashboard.payments.form_op'); ?></label>
+                                    <input type="text" name="operation_number" class="form-input" required placeholder="Ej: 015482" style="padding:0.7rem;">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label" for="payer_dni"
-                                        style="font-weight: 700; font-size: 0.8rem;"><?php echo _t('dashboard.payments.form_payer_dni'); ?></label>
-                                    <input type="text" id="payer_dni" name="payer_dni" class="form-input" required
-                                        placeholder="Ej: 74859612" style="padding: 0.8rem; border-radius: 10px;">
+                                    <label class="form-label" style="font-weight:700; font-size:0.75rem;"><?php echo _t('dashboard.payments.form_payer_dni'); ?></label>
+                                    <input type="text" name="payer_dni" class="form-input" required placeholder="Ej: 74859612" style="padding:0.7rem;">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label" for="payment_date"
-                                        style="font-weight: 700; font-size: 0.8rem;"><?php echo _t('dashboard.payments.form_date'); ?></label>
-                                    <input type="date" id="payment_date" name="payment_date" class="form-input" required
-                                        style="padding: 0.8rem; border-radius: 10px;">
+                                    <label class="form-label" style="font-weight:700; font-size:0.75rem;"><?php echo _t('dashboard.payments.form_date'); ?></label>
+                                    <input type="date" name="payment_date" class="form-input" required style="padding:0.6rem;">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label" for="payment_amount"
-                                        style="font-weight: 700; font-size: 0.8rem;"><?php echo _t('dashboard.payments.form_amount'); ?></label>
-                                    <input type="number" id="payment_amount" step="0.01" name="amount" class="form-input"
-                                        value="<?php echo $amount; ?>" required
-                                        style="padding: 0.8rem; border-radius: 10px;">
+                                    <label class="form-label" style="font-weight:700; font-size:0.75rem;"><?php echo _t('dashboard.payments.form_amount'); ?></label>
+                                    <input type="number" step="0.01" name="amount" class="form-input" value="<?php echo $amount; ?>" required style="padding:0.7rem;">
                                 </div>
                             </div>
-                            <div class="form-group" style="margin: 1.5rem 0;">
-                                <label class="form-label" for="voucher_file"
-                                    style="font-weight: 700; font-size: 0.8rem;"><?php echo _t('dashboard.payments.form_file'); ?></label>
-                                <input type="file" id="voucher_file" name="voucher_file" class="form-input" required
-                                    accept="image/*,application/pdf"
-                                    style="padding: 0.8rem; border-radius: 10px; background: var(--ivory);">
+                            <div class="form-group" style="margin: 1.2rem 0;">
+                                <label class="form-label" style="font-weight:700; font-size:0.75rem;"><?php echo _t('dashboard.payments.form_file'); ?></label>
+                                <input type="file" name="voucher_file" class="form-input" required accept="image/*,application/pdf" style="padding:0.6rem; background:#f8fafc; border:1px dashed #cbd5e1;">
                             </div>
-                            <button type="submit" class="btn-solid pink"
-                                style="width:100%; justify-content:center; padding: 1.2rem; border-radius: 14px; font-size: 1rem; font-weight: 700;">
-                                <i class="fa-solid fa-cloud-arrow-up"></i>
-                                <?php echo _t('dashboard.payments.btn_send_voucher'); ?>
+                            <button type="submit" class="btn-solid pink bcp-submit-btn">
+                                <i class="fa-solid fa-cloud-arrow-up"></i> <?php echo _t('dashboard.payments.btn_send_voucher'); ?>
                             </button>
                         </form>
                     </div>
 
-                    <!-- Right Side: Voucher Example -->
-                    <div
-                        style="flex: 1.2; background: #f4f7fa; padding: 3rem; display: flex; flex-direction: column; align-items: center; justify-content: center; border-left: 1px solid rgba(0,0,0,0.05);">
-                        <h4
-                            style="color: var(--purple); margin-bottom: 1.5rem; font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">
-                            <i class="fa-solid fa-circle-info" style="color: var(--pink); margin-right: 8px;"></i> <?php echo _t('dashboard.payments.deposit_data'); ?>
-                        </h4>
+                    <!-- Right Side: Data -->
+                    <div class="bcp-modal-data-side">
+                        <h4 class="bcp-data-title"><i class="fa-solid fa-circle-info" style="color:var(--pink);"></i> <?php echo _t('dashboard.payments.deposit_data'); ?></h4>
 
-                        <!-- Datos Bancarios BCP -->
-                        <div style="background: #fff; padding: 1.5rem; border-radius: 20px; border: 1px solid var(--border); margin-bottom: 2rem; width: 100%; max-width: 450px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-                            <div style="font-size: 0.85rem; color: var(--text-dark); display: flex; flex-direction: column; gap: 1rem;">
+                        <!-- National -->
+                        <div class="bcp-data-card">
+                            <div class="bcp-data-badge national">PERU / NACIONAL</div>
+                            <div class="bcp-data-item">
+                                <span class="bcp-label"><?php echo _t('dashboard.payments.holder'); ?></span>
+                                <strong class="bcp-value">INSTITUTO DE INVESTIGACION E I</strong>
+                            </div>
+                            <div class="bcp-data-item" style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
                                 <div>
-                                    <span style="display: block; font-weight: 800; color: var(--pink); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.5px; margin-bottom: 4px;"><?php echo _t('dashboard.payments.holder'); ?></span>
-                                    <strong style="font-size: 0.95rem;">INSTITUTO DE INVESTIGACION E I</strong>
+                                    <span class="bcp-label"><?php echo _t('dashboard.payments.acc_number'); ?></span>
+                                    <strong class="bcp-value-mono" style="font-size:0.95rem;">495-7375876-1-04</strong>
                                 </div>
                                 <div>
-                                    <span style="display: block; font-weight: 800; color: var(--pink); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.5px; margin-bottom: 4px;"><?php echo _t('dashboard.payments.acc_number'); ?></span>
-                                    <strong style="font-family: monospace; font-size: 1.1rem; color: #002a8d;">495-7375876-1-04</strong>
-                                </div>
-                                <div>
-                                    <span style="display: block; font-weight: 800; color: var(--pink); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.5px; margin-bottom: 4px;"><?php echo _t('dashboard.payments.cci'); ?></span>
-                                    <strong style="font-family: monospace; font-size: 1.1rem; color: #002a8d;">002-495-007375876104-00</strong>
+                                    <span class="bcp-label"><?php echo _t('dashboard.payments.cci'); ?></span>
+                                    <strong class="bcp-value-mono" style="font-size:0.95rem;">002-495-007375876104-00</strong>
                                 </div>
                             </div>
                         </div>
 
-                        <h4
-                            style="color: var(--purple); margin-bottom: 1.5rem; font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">
-                            <i class="fa-solid fa-image" style="color: var(--pink); margin-right: 8px;"></i> <?php echo _t('dashboard.payments.voucher_guide'); ?>
-                        </h4>
-                        <div
-                            style="background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 20px 45px rgba(0,0,0,0.12); width: 100%; max-width: 450px;">
-                            <img src="<?php echo URLROOT; ?>/img/bancos/voucherbcp.jpg" alt="Ejemplo Voucher BCP"
-                                style="width: 100%; height: auto; border-radius: 12px; display: block;">
+                        <!-- International -->
+                        <div class="bcp-data-card international">
+                            <div class="bcp-data-badge global"><i class="fa-solid fa-globe"></i> <?php echo _t('dashboard.payments.intl_wire_title'); ?></div>
+                            <div class="bcp-data-item">
+                                <span class="bcp-label"><?php echo _t('dashboard.payments.intl_wire_bank'); ?></span>
+                                <strong class="bcp-value" style="font-weight:700;">Wells Fargo Bank, N.A.</strong>
+                            </div>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:8px;">
+                                <div>
+                                    <span class="bcp-label">SWIFT</span>
+                                    <strong class="bcp-value-mono" style="font-size:0.9rem;">WFBIUS6S</strong>
+                                </div>
+                                <div>
+                                    <span class="bcp-label">ROUTING</span>
+                                    <strong class="bcp-value-mono" style="font-size:0.9rem;">121000248</strong>
+                                </div>
+                            </div>
+                            <div class="bcp-data-item">
+                                <span class="bcp-label">ACCOUNT</span>
+                                <strong class="bcp-value-mono" style="font-size:1rem;">2000044209247</strong>
+                            </div>
+                            <div class="bcp-data-item">
+                                <span class="bcp-label">BENEFICIARY</span>
+                                <strong class="bcp-value" style="font-size:0.75rem; line-height:1.2;">ONTA (Org. of Nematologists of Tropical Amer FL Inc)</strong>
+                            </div>
                         </div>
-                        <p
-                            style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--muted); text-align: center; line-height: 1.6; max-width: 380px;">
-                            <?php echo _t('dashboard.payments.voucher_note'); ?>
-                        </p>
+
+                        <div class="bcp-modal-note">
+                            <i class="fa-solid fa-triangle-exclamation" style="color:#d97706;"></i> <?php echo _t('dashboard.payments.voucher_note'); ?>
+                        </div>
+
+                        <div class="voucher-preview-container">
+                             <span class="bcp-label" style="margin-bottom:8px;"><?php echo _t('dashboard.payments.voucher_guide'); ?></span>
+                             <img src="<?php echo URLROOT; ?>/img/bancos/voucherbcp.jpg" alt="Voucher" class="voucher-img">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2556,24 +2736,17 @@
 
         <!-- ═══ MODAL CULQI ═══ -->
         <div id="culqiModal" class="sci-modal">
-            <div class="sci-modal-content"
-                style="max-width: 500px; padding: 4rem 3rem; border-radius: 32px; text-align: center; position: relative;">
+            <div class="sci-modal-content culqi-modal-inner" style="max-width: 500px;">
                 <span class="sci-modal-close" onclick="closePaymentModal('culqiModal')">&times;</span>
                 <div style="margin-bottom: 3rem; position: relative;">
-                    <img src="<?php echo URLROOT; ?>/img/objetos_onta/ontita_pagando.png" alt="Ontita" 
-                         style="position: absolute; top: -15px; right: 0; width: 70px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));">
-                    
-                    <img src="<?php echo URLROOT; ?>/img/bancos/culqi.png" alt="Culqi"
-                        style="height: 50px; margin-bottom: 2rem;">
-                    <h2
-                        style="font-family: var(--font-serif); color: var(--purple); font-size: 2rem; margin-bottom: 1rem;">
+                    <img src="<?php echo URLROOT; ?>/img/bancos/culqi.png" alt="Culqi" style="height: 50px; margin-bottom: 2rem;">
+                    <h2 style="font-family: var(--font-serif); color: var(--purple); font-size: 2rem; margin-bottom: 1rem;">
                         <?php echo _t('dashboard.payments.culqi_title'); ?></h2>
-                    <p style="color: var(--muted); line-height: 1.6;"><?php echo _t('dashboard.payments.culqi_desc'); ?>
-                    </p>
+                    <p style="color: var(--muted); line-height: 1.6;"><?php echo _t('dashboard.payments.culqi_desc'); ?></p>
                 </div>
 
-                <!-- Resumen de Compra (Exigido por Culqi) -->
-                <div style="background: #fcfcfd; border: 1px solid #eee; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; text-align: left;">
+                <!-- Resumen de Compra -->
+                <div class="culqi-summary-card">
                     <h4 style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.5rem;">Resumen de Inscripción</h4>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                         <span style="font-size: 0.95rem; color: var(--purple); font-weight: 500;"><?php echo _t('login.type_' . $_SESSION['user_category']); ?></span>
@@ -2585,8 +2758,8 @@
                     </div>
                 </div>
 
-                <!-- Aceptación de Términos (Obligatorio para Culqi) -->
-                <div style="margin-bottom: 2rem; text-align: left; background: #fff9f5; padding: 1rem; border-radius: 12px; border: 1px solid #ffe8d6;">
+                <!-- Aceptación de Términos -->
+                <div class="culqi-terms-box">
                     <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 0.85rem; color: var(--text);">
                         <input type="checkbox" id="accept_terms_culqi" style="margin-top: 3px; accent-color: #ff6b00;">
                         <span>He leído y acepto los <a href="<?php echo URLROOT; ?>/legal/terminos" target="_blank" style="color: #ff6b00; font-weight: 700; text-decoration: none;">Términos y Condiciones</a> y la <a href="<?php echo URLROOT; ?>/legal/devoluciones" target="_blank" style="color: #ff6b00; font-weight: 700; text-decoration: none;">Política de Reembolso</a>.</span>
@@ -2605,8 +2778,7 @@
                     </div>
                 </div>
 
-                <button id="btn-pay-culqi" class="btn-solid"
-                    style="background: #ff6b00; color: #fff; width: 100%; justify-content: center; border: none; padding: 1.5rem; border-radius: 16px; font-size: 1.2rem; font-weight: 800; box-shadow: 0 15px 30px rgba(255,107,0,0.3);">
+                <button id="btn-pay-culqi" class="btn-solid" style="background: #ff6b00; color: #fff; width: 100%; justify-content: center; border: none; padding: 1.5rem; border-radius: 16px; font-size: 1.2rem; font-weight: 800; box-shadow: 0 15px 30px rgba(255,107,0,0.3);">
                     <i class="fa-solid fa-credit-card"></i> <?php echo _t('dashboard.payments.btn_pay_culqi'); ?>
                 </button>
             </div>

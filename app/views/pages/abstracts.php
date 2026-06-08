@@ -318,11 +318,11 @@ require APPROOT . '/views/inc/header.php';
                 <i class="fa-solid fa-download" style="color: var(--pink); margin-right: 5px;"></i> <?php echo _t('abstracts.modal_author_formats'); ?>
             </div>
             <div style="display: flex; gap: 1.5rem;">
-                <a href="<?php echo URLROOT; ?>/uploads/formatos/Formato_de_resumen_onta_2026.docx" download style="color: #2563eb; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
-                    <i class="fa-solid fa-file-word"></i> <?php echo _t('abstracts.modal_author_btn_word'); ?>
+                <a href="<?php echo URLROOT; ?>/uploads/formatos/Formato_de_resumen_onta_2026.docx" download style="color: #2563eb; font-weight: 700; font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease; padding: 0.8rem 1.5rem; background: #eef2ff; border-radius: 12px; display: flex; align-items: center; gap: 0.8rem;" onmouseover="this.style.background='#e0e7ff'" onmouseout="this.style.background='#eef2ff'">
+                    <i class="fa-solid fa-file-word" style="font-size: 1.4rem;"></i> <?php echo _t('abstracts.modal_author_btn_word'); ?>
                 </a>
-                <a href="<?php echo URLROOT; ?>/uploads/formatos/Formato_de_resumen_onta_2026.zip" download style="color: #059669; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
-                    <i class="fa-solid fa-file-zipper"></i> <?php echo _t('abstracts.modal_author_btn_latex'); ?>
+                <a href="<?php echo URLROOT; ?>/uploads/formatos/Formato_de_resumen_onta_2026.zip" download style="color: #059669; font-weight: 700; font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease; padding: 0.8rem 1.5rem; background: #ecfdf5; border-radius: 12px; display: flex; align-items: center; gap: 0.8rem;" onmouseover="this.style.background='#d1fae5'" onmouseout="this.style.background='#ecfdf5'">
+                    <i class="fa-solid fa-file-zipper" style="font-size: 1.4rem;"></i> <?php echo _t('abstracts.modal_author_btn_latex'); ?>
                 </a>
             </div>
         </div>

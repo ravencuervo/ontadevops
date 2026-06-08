@@ -48,9 +48,10 @@ function initLanguage() {
  * Translate a key
  * 
  * @param string $key Dot-notation key (e.g. 'nav.home')
+ * @param array $params Optional parameters for placeholder replacement (e.g. [':name' => 'John'])
  * @return string|array Translated text or array of translations
  */
-function _t($key) {
+function _t($key, $params = []) {
     if (!isset($GLOBALS['translations'])) {
         return $key;
     }
@@ -63,6 +64,13 @@ function _t($key) {
             $translation = $translation[$k];
         } else {
             return $key; // Return key if not found
+        }
+    }
+
+    // Handle placeholder replacement if it's a string
+    if (is_string($translation) && !empty($params)) {
+        foreach ($params as $placeholder => $value) {
+            $translation = str_replace($placeholder, $value, $translation);
         }
     }
 

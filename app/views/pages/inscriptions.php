@@ -798,11 +798,11 @@ require APPROOT . '/views/inc/header.php';
                 <p class="comite-section-desc" style="font-size: 1.15rem; line-height: 1.7; color: #555; max-width: 800px; margin-left: auto; margin-right: auto;"><?php echo _t('inscriptions.benefits_intro'); ?></p>
             </header>
 
-            <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
+            <div class="benefits-grid" style="display: flex; justify-content: center;">
                 
-                <!-- Todas las categorías -->
-                <div class="benefit-card" style="background: var(--cream); padding: 3rem; border-radius: 20px; border-left: 6px solid var(--purple); box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; height: 100%; position: relative;">
-                    <h4 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--purple); margin-bottom: 1.8rem; line-height: 1.3; font-weight: 800;"><?php echo _t('inscriptions.benefits_all_title'); ?></h4>
+                <!-- Beneficio Único Consolidado -->
+                <div class="benefit-card" style="background: var(--cream); padding: 3rem; border-radius: 20px; border-left: 6px solid var(--purple); box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; height: 100%; position: relative; max-width: 700px; width: 100%;">
+                    <h4 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--purple); margin-bottom: 1.8rem; line-height: 1.3; font-weight: 800;">Todas las categorías de inscripción incluyen:</h4>
                     <ul class="benefit-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.4rem; flex: 1;">
                         <li style="display: flex; gap: 1.2rem; align-items: flex-start; font-size: 1rem; color: var(--text-dark);">
                             <i class="fa-solid fa-martini-glass-citrus" style="color: var(--pink); margin-top: 3px; font-size: 1.3rem; width: 25px; text-align: center;"></i> <span style="line-height: 1.5;"><?php echo _t('inscriptions.benefits_all_1'); ?></span>
@@ -816,17 +816,6 @@ require APPROOT . '/views/inc/header.php';
                         <li style="display: flex; gap: 1.2rem; align-items: flex-start; font-size: 1rem; color: var(--text-dark);">
                             <i class="fa-solid fa-award" style="color: var(--gold); margin-top: 3px; font-size: 1.3rem; width: 25px; text-align: center;"></i> <span style="line-height: 1.5; font-weight: 700; color: var(--p-indigo);"><?php echo _t('inscriptions.benefits_all_4'); ?></span>
                         </li>
-                    </ul>
-                    <!-- Torito de Pucará Flotante -->
-                    <div style="position: absolute; bottom: -30px; right: -20px; width: 130px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); pointer-events: none;">
-                        <img src="<?php echo URLROOT; ?>/img/objetos_onta/torito_onta.png" alt="Torito de Pucará" style="width: 100%; height: auto; transform: rotate(5deg);">
-                    </div>
-                </div>
-
-                <!-- Adicional -->
-                <div class="benefit-card premium-card" style="background: var(--ivory); padding: 3rem; border-radius: 20px; border: 1px solid rgba(222,176,90,0.3); border-top: 6px solid var(--gold); box-shadow: 0 15px 40px rgba(0,0,0,0.04); display: flex; flex-direction: column; height: 100%;">
-                    <h4 style="font-family: var(--font-serif); font-size: 1.25rem; color: #B8860B; margin-bottom: 1.8rem; line-height: 1.4; font-weight: 900;"><?php echo _t('inscriptions.benefits_other_title'); ?></h4>
-                    <ul class="benefit-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.4rem; flex: 1;">
                         <li style="display: flex; gap: 1.2rem; align-items: flex-start; font-size: 1rem; color: var(--text-dark);">
                             <i class="fa-solid fa-mug-hot" style="color: var(--gold); margin-top: 3px; font-size: 1.3rem; width: 25px; text-align: center;"></i> <span style="line-height: 1.5;"><?php echo _t('inscriptions.benefits_other_1'); ?></span>
                         </li>
@@ -837,6 +826,23 @@ require APPROOT . '/views/inc/header.php';
                             <i class="fa-solid fa-microscope" style="color: var(--gold); margin-top: 3px; font-size: 1.3rem; width: 25px; text-align: center;"></i> <span style="line-height: 1.5;"><?php echo _t('inscriptions.benefits_other_3'); ?></span>
                         </li>
                     </ul>
+                    <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted); font-style: italic;">
+                        <?php
+                        $lang = getCurrentLang();
+                        if ($lang == 'EN') {
+                            echo '(*) Accompanying persons are not entitled to the scientific benefits mentioned above.';
+                        } elseif ($lang == 'BR') {
+                            echo '(*) Os acompanhantes não têm direito aos benefícios científicos mencionados acima.';
+                        } else {
+                            echo '(*) Los acompañantes no tienen derecho a los beneficios científicos mencionados anteriormente.';
+                        }
+                        ?>
+                    </p>
+
+                    <!-- Torito de Pucará Flotante -->
+                    <div style="position: absolute; bottom: -30px; right: -20px; width: 130px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); pointer-events: none;">
+                        <img src="<?php echo URLROOT; ?>/img/objetos_onta/torito_onta.png" alt="Torito de Pucará" style="width: 100%; height: auto; transform: rotate(5deg);">
+                    </div>
                 </div>
 
             </div>
@@ -880,6 +886,24 @@ require APPROOT . '/views/inc/header.php';
 
 <section id="tarifas" class="comite-section comite-section-light" style="padding-top: 4rem;">
     <div class="container">
+        
+        <!-- Nota de Flujo -->
+        <div class="alert-info" style="background: rgba(222, 176, 90, 0.1); border: 1px solid var(--p-gold); border-radius: 16px; padding: 1.5rem; text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <p style="margin: 0; color: var(--p-indigo); font-weight: 600; font-size: 1.1rem;">
+                <i class="fa-solid fa-circle-exclamation" style="color: var(--p-gold); margin-right: 0.5rem;"></i>
+                <?php
+                $lang = getCurrentLang();
+                if ($lang == 'EN') {
+                    echo 'To make the payment for your registration, you must first complete your <strong>registration</strong> in the system. Once registered, you will be able to access your user panel to manage the payment.';
+                } elseif ($lang == 'BR') {
+                    echo 'Para efetuar o pagamento da sua inscrição, primeiro você deve concluir o seu <strong>cadastro</strong> no sistema. Após o registro, você poderá acessar seu painel de usuário para gerenciar o pagamento.';
+                } else {
+                    echo 'Para realizar el pago de tu inscripción, primero debes haber completado tu <strong>registro</strong> en el sistema. Una vez registrado, podrás acceder a tu panel de usuario para gestionar el pago.';
+                }
+                ?>
+            </p>
+        </div>
+
         <header class="comite-section-header">
             <h2 class="section-title"><?php echo _t('inscriptions.pricing_title'); ?></h2>
             <p class="comite-section-desc"><?php echo _t('inscriptions.pricing_desc'); ?></p>

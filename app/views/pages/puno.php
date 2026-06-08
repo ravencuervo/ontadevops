@@ -658,13 +658,13 @@ echo '</h2>';
             <!-- Hotel 2 -->
             <div class="ph-hotel-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.05)';">
                 <div class="ph-hotel-img" style="height: 220px; position: relative;">
-                    <img src="<?php echo URLROOT; ?>/img/hoteles/h2.jpg" alt="Sonesta Hotel Posadas Del Inca Puno" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="<?php echo URLROOT; ?>/img/hoteles/h8.jpg" alt="Sonesta Hotel Posadas Del Inca Puno" style="width: 100%; height: 100%; object-fit: cover;">
                     <div style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--p-indigo); box-shadow: 0 5px 15px rgba(0,0,0,0.1); backdrop-filter: blur(5px);"><i class="fa-solid fa-car" style="color: #0e7490;"></i> 1.9km <?php echo _t('puno.hotels_distance'); ?></div>
                 </div>
                 <div class="ph-hotel-body" style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
                     <h3 style="font-family: var(--font-serif); font-size: 1.35rem; margin-bottom: 1.2rem; color: var(--p-indigo); line-height: 1.3;">Sonesta Posadas Del Inca</h3>
                     <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; flex: 1;">
-                        <li style="font-size: 0.95rem; color: #555; margin-bottom: 0.8rem; display: flex; gap: 0.8rem; align-items: flex-start;"><i class="fa-solid fa-location-dot" style="color: #ccc; margin-top: 3px; min-width: 15px;"></i> 5XGV+7X5, Sesquicentenario 610, Puno 21001</li>
+                        <li style="font-size: 0.95rem; color: #555; margin-bottom: 0.8rem; display: flex; gap: 0.8rem; align-items: flex-start;"><i class="fa-solid fa-location-dot" style="color: #ccc; margin-top: 3px; min-width: 15px;"></i> Av. Sesquicentenario 610, Puno 21001</li>
                         <li style="font-size: 0.95rem; color: #555; margin-bottom: 0.8rem; display: flex; gap: 0.8rem; align-items: center;"><i class="fa-solid fa-phone" style="color: #ccc; min-width: 15px;"></i> 051364113</li>
                     </ul>
                     <a href="https://www.sonestapipuno.com" target="_blank" style="display: block; text-align: center; background: rgba(14, 116, 144, 0.05); color: #0e7490; font-weight: 600; padding: 0.9rem; border-radius: 12px; text-decoration: none; border: 1px solid rgba(14, 116, 144, 0.1); transition: all 0.3s ease;" onmouseover="this.style.background='#0e7490'; this.style.color='white';" onmouseout="this.style.background='rgba(14, 116, 144, 0.05)'; this.style.color='#0e7490';"><?php echo _t('puno.hotels_website'); ?> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8rem; margin-left: 5px;"></i></a>
@@ -674,7 +674,7 @@ echo '</h2>';
             <!-- Hotel 3 -->
             <div class="ph-hotel-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.05)';">
                 <div class="ph-hotel-img" style="height: 220px; position: relative;">
-                    <img src="<?php echo URLROOT; ?>/img/hoteles/h3.jpg" alt="Casa Andina Premium Puno" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="<?php echo URLROOT; ?>/img/hoteles/h9.jpg" alt="Casa Andina Premium Puno" style="width: 100%; height: 100%; object-fit: cover;">
                     <div style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--p-indigo); box-shadow: 0 5px 15px rgba(0,0,0,0.1); backdrop-filter: blur(5px);"><i class="fa-solid fa-person-walking" style="color: var(--pink);"></i> 850m <?php echo _t('puno.hotels_distance'); ?></div>
                 </div>
                 <div class="ph-hotel-body" style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
@@ -690,7 +690,7 @@ echo '</h2>';
             <!-- Hotel 4 -->
             <div class="ph-hotel-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.05)';">
                 <div class="ph-hotel-img" style="height: 220px; position: relative;">
-                    <img src="<?php echo URLROOT; ?>/img/hoteles/h4.jpg" alt="Kaaro Hotel El Buho" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="<?php echo URLROOT; ?>/img/hoteles/h2.jpg" alt="Kaaro Hotel El Buho" style="width: 100%; height: 100%; object-fit: cover;">
                     <div style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--p-indigo); box-shadow: 0 5px 15px rgba(0,0,0,0.1); backdrop-filter: blur(5px);"><i class="fa-solid fa-car" style="color: #0e7490;"></i> 5.1km <?php echo _t('puno.hotels_distance'); ?></div>
                 </div>
                 <div class="ph-hotel-body" style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
@@ -706,7 +706,7 @@ echo '</h2>';
             <!-- Hotel 5 -->
             <div class="ph-hotel-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.05)';">
                 <div class="ph-hotel-img" style="height: 220px; position: relative;">
-                    <img src="<?php echo URLROOT; ?>/img/hoteles/h5.jpg" alt="Casa Don Jose B & B" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="<?php echo URLROOT; ?>/img/hoteles/h3.jpg" alt="Casa Don Jose B & B" style="width: 100%; height: 100%; object-fit: cover;">
                     <div style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--p-indigo); box-shadow: 0 5px 15px rgba(0,0,0,0.1); backdrop-filter: blur(5px);"><i class="fa-solid fa-car" style="color: #0e7490;"></i> 5.7km <?php echo _t('puno.hotels_distance'); ?></div>
                 </div>
                 <div class="ph-hotel-body" style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
@@ -722,7 +722,7 @@ echo '</h2>';
             <!-- Hotel 6 -->
             <div class="ph-hotel-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.05)';">
                 <div class="ph-hotel-img" style="height: 220px; position: relative;">
-                    <img src="<?php echo URLROOT; ?>/img/hoteles/h6.jpg" alt="Titicaca Halso Lodge" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="<?php echo URLROOT; ?>/img/hoteles/h4.jpg" alt="Titicaca Halso Lodge" style="width: 100%; height: 100%; object-fit: cover;">
                     <div style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--p-indigo); box-shadow: 0 5px 15px rgba(0,0,0,0.1); backdrop-filter: blur(5px);"><i class="fa-solid fa-car" style="color: #0e7490;"></i> 3km <?php echo _t('puno.hotels_distance'); ?></div>
                 </div>
                 <div class="ph-hotel-body" style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
@@ -738,7 +738,7 @@ echo '</h2>';
             <!-- Hotel 7 -->
             <div class="ph-hotel-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.05)';">
                 <div class="ph-hotel-img" style="height: 220px; position: relative;">
-                    <img src="<?php echo URLROOT; ?>/img/hoteles/h7.jpg" alt="Hotel hacienda Plaza de Armas" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="<?php echo URLROOT; ?>/img/hoteles/h5.jpg" alt="Hotel hacienda Plaza de Armas" style="width: 100%; height: 100%; object-fit: cover;">
                     <div style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--p-indigo); box-shadow: 0 5px 15px rgba(0,0,0,0.1); backdrop-filter: blur(5px);"><i class="fa-solid fa-car" style="color: #0e7490;"></i> 5.4km <?php echo _t('puno.hotels_distance'); ?></div>
                 </div>
                 <div class="ph-hotel-body" style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
@@ -754,7 +754,7 @@ echo '</h2>';
             <!-- Hotel 8 -->
             <div class="ph-hotel-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.05)';">
                 <div class="ph-hotel-img" style="height: 220px; position: relative;">
-                    <img src="<?php echo URLROOT; ?>/img/hoteles/h8.jpg" alt="Hotel Hacienda Puno Centro Histórico" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="<?php echo URLROOT; ?>/img/hoteles/h6.jpg" alt="Hotel Hacienda Puno Centro Histórico" style="width: 100%; height: 100%; object-fit: cover;">
                     <div style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--p-indigo); box-shadow: 0 5px 15px rgba(0,0,0,0.1); backdrop-filter: blur(5px);"><i class="fa-solid fa-car" style="color: #0e7490;"></i> 5.2km <?php echo _t('puno.hotels_distance'); ?></div>
                 </div>
                 <div class="ph-hotel-body" style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
@@ -770,7 +770,7 @@ echo '</h2>';
             <!-- Hotel 9 -->
             <div class="ph-hotel-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.05)';">
                 <div class="ph-hotel-img" style="height: 220px; position: relative;">
-                    <img src="<?php echo URLROOT; ?>/img/hoteles/h9.jpg" alt="Tierra Viva Puno Plaza" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="<?php echo URLROOT; ?>/img/hoteles/h7.jpg" alt="Tierra Viva Puno Plaza" style="width: 100%; height: 100%; object-fit: cover;">
                     <div style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--p-indigo); box-shadow: 0 5px 15px rgba(0,0,0,0.1); backdrop-filter: blur(5px);"><i class="fa-solid fa-car" style="color: #0e7490;"></i> 5.3km <?php echo _t('puno.hotels_distance'); ?></div>
                 </div>
                 <div class="ph-hotel-body" style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">

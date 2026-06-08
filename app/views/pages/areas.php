@@ -47,7 +47,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">01</div>
                 <div class="area-card-icon sci-icon-box--pink">
-                    <i class="fa-solid fa-graduation-cap"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/1.png" alt="Icono Área 1">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area1_title'); ?></span>
                 <h3><?php echo _t('areas.area1_desc'); ?></h3>
@@ -61,7 +61,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">02</div>
                 <div class="area-card-icon sci-icon-box--purple">
-                    <i class="fa-solid fa-leaf"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/2.png" alt="Icono Área 2">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area2_title'); ?></span>
                 <h3><?php echo _t('areas.area2_desc'); ?></h3>
@@ -75,7 +75,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">03</div>
                 <div class="area-card-icon sci-icon-box--teal">
-                    <i class="fa-solid fa-bug"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/3.png" alt="Icono Área 3">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area3_title'); ?></span>
                 <h3><?php echo _t('areas.area3_desc'); ?></h3>
@@ -89,7 +89,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">04</div>
                 <div class="area-card-icon sci-icon-box--coral">
-                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/4.png" alt="Icono Área 4">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area4_title'); ?></span>
                 <h3><?php echo _t('areas.area4_desc'); ?></h3>
@@ -103,7 +103,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">05</div>
                 <div class="area-card-icon sci-icon-box--pink">
-                    <i class="fa-solid fa-wheat-awn"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/5.png" alt="Icono Área 5">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area5_title'); ?></span>
                 <h3><?php echo _t('areas.area5_desc'); ?></h3>
@@ -117,7 +117,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">06</div>
                 <div class="area-card-icon sci-icon-box--purple">
-                    <i class="fa-solid fa-flask-vial"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/6.png" alt="Icono Área 6">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area6_title'); ?></span>
                 <h3><?php echo _t('areas.area6_desc'); ?></h3>
@@ -131,7 +131,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">07</div>
                 <div class="area-card-icon sci-icon-box--teal">
-                    <i class="fa-solid fa-vial-circle-check"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/7.png" alt="Icono Área 7">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area7_title'); ?></span>
                 <h3><?php echo _t('areas.area7_desc'); ?></h3>
@@ -145,7 +145,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">08</div>
                 <div class="area-card-icon sci-icon-box--coral">
-                    <i class="fa-solid fa-earth-africa"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/8.png" alt="Icono Área 8">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area8_title'); ?></span>
                 <h3><?php echo _t('areas.area8_desc'); ?></h3>
@@ -159,7 +159,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">09</div>
                 <div class="area-card-icon sci-icon-box--pink">
-                    <i class="fa-solid fa-dna"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/9.png" alt="Icono Área 9">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area9_title'); ?></span>
                 <h3><?php echo _t('areas.area9_desc'); ?></h3>
@@ -174,7 +174,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">10</div>
                 <div class="area-card-icon sci-icon-box--purple">
-                    <i class="fa-solid fa-microscope"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/10.png" alt="Icono Área 10">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area10_title'); ?></span>
                 <h3><?php echo _t('areas.area10_desc'); ?></h3>
@@ -188,7 +188,7 @@
             <article class="area-premium-card">
                 <div class="area-card-num">11</div>
                 <div class="area-card-icon sci-icon-box--teal">
-                    <i class="fa-solid fa-robot"></i>
+                    <img src="<?php echo URLROOT; ?>/img/iconos_areas/11.png" alt="Icono Área 11">
                 </div>
                 <span class="area-badge"><?php echo _t('areas.area11_title'); ?></span>
                 <h3><?php echo _t('areas.area11_desc'); ?></h3>
