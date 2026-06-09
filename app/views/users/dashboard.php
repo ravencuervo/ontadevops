@@ -2860,11 +2860,12 @@
             document.addEventListener('DOMContentLoaded', () => {
                 const btnCulqi = document.getElementById('btn-pay-culqi');
                 if (btnCulqi) {
+                    // Configuración de Culqi
+                    Culqi.publicKey = '<?php echo CULQI_PUBLIC_KEY; ?>';
                     Culqi.settings({
                         title: 'ONTA PERU 2026',
                         currency: 'USD',
-                        amount: <?php echo $amount * 100; ?>, // En céntimos
-                        public_key: '<?php echo CULQI_PUBLIC_KEY; ?>'
+                        amount: <?php echo (int)($amount * 100); ?> // En céntimos
                     });
 
                     btnCulqi.addEventListener('click', function (e) {
