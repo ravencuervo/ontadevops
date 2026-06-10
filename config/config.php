@@ -2,23 +2,23 @@
 
 // Database params
 
-// define('DB_HOST', 'localhost');
-
-// define('DB_USER', 'ubvwmzhw_onta');
-
-// define('DB_PASS', 'Ch@98361502525');
-
-// define('DB_NAME', 'ubvwmzhw_onta');
-
-
-
 define('DB_HOST', 'localhost');
 
-define('DB_USER', 'root');
+define('DB_USER', 'ubvwmzhw_onta');
 
-define('DB_PASS', '');
+define('DB_PASS', 'Ch@98361502525');
 
 define('DB_NAME', 'ubvwmzhw_onta');
+
+
+
+// define('DB_HOST', 'localhost');
+
+// define('DB_USER', 'root');
+
+// define('DB_PASS', '');
+
+// define('DB_NAME', 'ubvwmzhw_onta');
 
 
 
@@ -28,9 +28,9 @@ define('APPROOT', dirname(dirname(__FILE__)) . '/app');
 
 // URL Root (adjust as needed for XAMPP)
 
-// define('URLROOT', 'https://www.ontaperu.pe');
+define('URLROOT', 'https://www.ontaperu.pe');
 
-define('URLROOT', 'http://localhost/onta');
+// define('URLROOT', 'http://localhost/onta');
 
 // Public Root
 
@@ -74,6 +74,11 @@ define('CULQI_PUBLIC_KEY', 'pk_live_ewu6fcP5YB7qHUoA');
 
 define('CULQI_SECRET_KEY', 'sk_live_cXs8XuOe4r5knNYu');
 
+// CULQI KEYS (test Mode)
+
+// define('CULQI_PUBLIC_KEY', 'pk_test_UzYGJhcthnaXAdM8');
+
+// define('CULQI_SECRET_KEY', 'sk_test_vKbt0mCLS8lpH3Lt');
 
 
 

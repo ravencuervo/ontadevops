@@ -66,6 +66,7 @@ return [
     'type_extranjero' => 'ESTRANGEIRO',
     'type_nacional' => 'NACIONAL',
     'type_acompanante' => 'ACOMPANHANTE',
+    'type_' => 'Sem Categoria',
     'category_label' => 'Categoria de Inscrição',
   ],
   'comite' => [

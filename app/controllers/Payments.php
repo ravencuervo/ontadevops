@@ -99,31 +99,94 @@ class Payments extends Controller {
             $request = json_decode($json);
 
             if (isset($request->token) && isset($request->amount)) {
-                // Aquí iría la llamada al API de Culqi para hacer el cargo real
-                // Por ahora, como es prueba local, simulamos éxito
+                // Obtener datos del usuario
+                $user = $this->userModel->getUserById($_SESSION['user_id']);
+                $email = isset($user->email) ? $user->email : 'cliente@ejemplo.com';
+
+                // Llamada al API de Culqi para crear el cargo real
+                $url = 'https://api.culqi.com/v2/charges';
                 
-                $data = [
-                    'user_id' => $_SESSION['user_id'],
-                    'transaction_id' => 'CULQI_TEST_' . time(),
-                    'amount' => $request->amount / 100 // Culqi usa céntimos
+                $cat_name = isset($user->user_category) ? $user->user_category : 'N/A';
+                $cat_key = strtolower(str_replace(['ñ', ' '], ['n', '_'], $cat_name));
+                $translated_category = _t('login.type_' . $cat_key);
+                
+                // Dividir el nombre del usuario en primer nombre y apellido para client_details
+                $name_parts = explode(' ', trim($user->name ?? ''));
+                $first_name = $name_parts[0] !== '' ? $name_parts[0] : 'Cliente';
+                $last_name = count($name_parts) > 1 ? implode(' ', array_slice($name_parts, 1)) : '-';
+                
+                // Limpiar el número de teléfono
+                $phone_number = isset($user->phone) && !empty($user->phone) ? preg_replace('/[^0-9+]/', '', $user->phone) : '999999999';
+                if (empty($phone_number)) {
+                    $phone_number = '999999999';
+                }
+
+                $culqi_data = [
+                    'amount' => $request->amount, // Culqi espera el monto en céntimos
+                    'currency_code' => 'USD', // Moneda utilizada (Dólares)
+                    'email' => $email,
+                    'source_id' => $request->token,
+                    'description' => 'Inscripción ONTA 2026 - ' . (isset($user->name) ? $user->name : 'Cliente') . ' (' . $translated_category . ')',
+                    'client_details' => [
+                        'first_name' => $first_name,
+                        'last_name' => $last_name,
+                        'email' => $email,
+                        'phone_number' => $phone_number
+                    ],
+                    'metadata' => [
+                        'nombre_cliente' => isset($user->name) ? $user->name : 'N/A',
+                        'dni' => isset($user->dni) ? $user->dni : 'N/A',
+                        'telefono' => isset($user->phone) ? $user->phone : 'N/A',
+                        'institucion' => isset($user->university) ? $user->university : 'N/A'
+                    ]
                 ];
 
-                if ($this->inscriptionModel->processCulqiPayment($data)) {
-                    // Agregar notificación real a la BD
-                    $this->notificationModel->add(
-                        $_SESSION['user_id'], 
-                        'Pago realizado con éxito', 
-                        'Su pago mediante Culqi ha sido verificado instantáneamente. ¡Bienvenido a ONTA 2026!',
-                        'payment'
-                    );
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                    'Authorization: Bearer ' . CULQI_SECRET_KEY,
+                    'Content-Type: application/json'
+                ]);
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($culqi_data));
+                
+                $response = curl_exec($ch);
+                $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                curl_close($ch);
 
-                    $_SESSION['payment_submitted'] = true;
-                    echo json_encode(['success' => true]);
+                $response_data = json_decode($response);
+
+                // Verificar si la respuesta de Culqi fue exitosa
+                if ($http_status >= 200 && $http_status < 300 && isset($response_data->object) && $response_data->object === 'charge') {
+                    // Éxito real en Culqi
+                    $data = [
+                        'user_id' => $_SESSION['user_id'],
+                        'transaction_id' => $response_data->id, // Guardamos el ID real de Culqi
+                        'amount' => $request->amount / 100 // Guardamos el monto real (en USD, no en céntimos)
+                    ];
+
+                    if ($this->inscriptionModel->processCulqiPayment($data)) {
+                        // Agregar notificación a la BD
+                        $this->notificationModel->add(
+                            $_SESSION['user_id'], 
+                            'Pago realizado con éxito', 
+                            'Su pago mediante Culqi ha sido verificado y cobrado correctamente. ¡Bienvenido a ONTA 2026!',
+                            'payment'
+                        );
+
+                        $_SESSION['payment_submitted'] = true;
+                        echo json_encode(['success' => true]);
+                    } else {
+                        // El cobro en Culqi fue exitoso, pero falló al guardar en DB
+                        echo json_encode(['success' => false, 'message' => 'Cobro exitoso en Culqi, pero hubo un error guardando en la base de datos local.']);
+                    }
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Error en base de datos']);
+                    // Fallo al cobrar en Culqi (ej. fondos insuficientes, tarjeta rechazada)
+                    $error_message = isset($response_data->user_message) ? $response_data->user_message : 'Hubo un error al procesar la tarjeta con Culqi.';
+                    echo json_encode(['success' => false, 'message' => $error_message]);
                 }
             } else {
-                echo json_encode(['success' => false, 'message' => 'Datos inválidos']);
+                echo json_encode(['success' => false, 'message' => 'Datos inválidos recibidos del token de Culqi.']);
             }
         }
     }

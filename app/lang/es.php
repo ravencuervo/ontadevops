@@ -105,6 +105,7 @@ return [
     'type_extranjero' => 'Estudiante Extranjero',
     'type_nacional' => 'Estudiante Nacional',
     'type_acompanante' => 'Acompañante',
+    'type_' => 'Sin Categoría',
     'category_label' => 'Categoría de Inscripción',
   ],
   'dashboard' => [

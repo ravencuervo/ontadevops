@@ -2749,7 +2749,12 @@
                 <div class="culqi-summary-card">
                     <h4 style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.5rem;">Resumen de Inscripción</h4>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span style="font-size: 0.95rem; color: var(--purple); font-weight: 500;"><?php echo _t('login.type_' . $_SESSION['user_category']); ?></span>
+                        <span style="font-size: 0.95rem; color: var(--purple); font-weight: 500;">
+                            <?php 
+                                $cat_modal = strtolower(str_replace(['ñ', ' '], ['n', '_'], $_SESSION['user_category']));
+                                echo _t('login.type_' . $cat_modal); 
+                            ?>
+                        </span>
                         <span style="font-weight: 700;">$ <?php echo number_format($amount, 2); ?></span>
                     </div>
                     <div style="display: flex; justify-content: space-between; padding-top: 0.8rem; border-top: 1px solid #f0f0f0; margin-top: 0.5rem;">
@@ -2849,7 +2854,6 @@
 
         <script src="https://checkout.culqi.com/js/v4"></script>
         <script>
-
             // Close modal when clicking outside
             window.onclick = function (event) {
                 if (event.target.classList.contains('sci-modal')) {
@@ -2857,34 +2861,77 @@
                 }
             }
 
-            document.addEventListener('DOMContentLoaded', () => {
+            // Configuración de Culqi - Envolver en una función para asegurar que Culqi esté cargado
+            function initCulqi() {
+                if (typeof Culqi === 'undefined') {
+                    console.log("Culqi no cargado aún, reintentando...");
+                    setTimeout(initCulqi, 200);
+                    return;
+                }
+
                 const btnCulqi = document.getElementById('btn-pay-culqi');
                 if (btnCulqi) {
-                    // Configuración de Culqi
                     Culqi.publicKey = '<?php echo CULQI_PUBLIC_KEY; ?>';
+
+                    // Separar nombre y apellidos del usuario registrado
+                    <?php
+                        $user_name_parts = explode(' ', trim($data['user']->name ?? ''));
+                        $user_first_name = $user_name_parts[0] ?? 'Cliente';
+                        $user_last_name  = count($user_name_parts) > 1 ? implode(' ', array_slice($user_name_parts, 1)) : '-';
+                        $user_phone_clean = preg_replace('/[^0-9]/', '', $data['user']->phone ?? '');
+                        if (strlen($user_phone_clean) < 6) $user_phone_clean = '999999999';
+                    ?>
+
                     Culqi.settings({
                         title: 'ONTA PERU 2026',
                         currency: 'USD',
-                        amount: <?php echo (int)($amount * 100); ?> // En céntimos
+                        description: 'Inscripción ONTA 2026 - <?php echo htmlspecialchars($data['user']->name); ?>',
+                        amount: <?php echo (int)($amount * 100); ?>,
+                        email: '<?php echo strtolower(htmlspecialchars($data['user']->email)); ?>'
+                    });
+
+                    // Enviar datos del cliente para que aparezca el nombre real en el panel de Culqi
+                    Culqi.options({
+                        lang: 'es',
+                        installments: false,
+                        client: {
+                            email:        '<?php echo strtolower(htmlspecialchars($data['user']->email)); ?>',
+                            first_name:   '<?php echo htmlspecialchars($user_first_name); ?>',
+                            last_name:    '<?php echo htmlspecialchars($user_last_name); ?>',
+                            phone_number: '<?php echo $user_phone_clean; ?>'
+                        }
                     });
 
                     btnCulqi.addEventListener('click', function (e) {
+                        e.preventDefault();
                         const check = document.getElementById('accept_terms_culqi');
                         if (!check.checked) {
                             alert('Debe aceptar los Términos y Condiciones para continuar con el pago.');
                             return;
                         }
+                        
+                        console.log("Abriendo Culqi Checkout...");
                         Culqi.open();
-                        e.preventDefault();
                     });
                 }
-            });
+            }
+
+            document.addEventListener('DOMContentLoaded', initCulqi);
 
             // Función que Culqi llama automáticamente al finalizar
             function culqi() {
                 if (Culqi.token) {
                     const token = Culqi.token.id;
                     const email = Culqi.token.email;
+
+                    console.log("Token recibido: " + token);
+
+                    // Deshabilitar botón para evitar doble click
+                    const btn = document.getElementById('btn-pay-culqi');
+                    if (btn) {
+                        btn.disabled = true;
+                        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando...';
+                    }
 
                     // Enviar al servidor mediante Fetch
                     fetch('<?php echo URLROOT; ?>/payments/culqi', {
@@ -2893,20 +2940,32 @@
                         body: JSON.stringify({
                             token: token,
                             email: email,
-                            amount: <?php echo $amount * 100; ?>
+                            amount: <?php echo (int)($amount * 100); ?>
                         })
                     })
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.success) {
-                                window.location.href = '<?php echo URLROOT; ?>/users/dashboard#notificaciones';
-                                location.reload();
-                            } else {
-                                alert('Hubo un error al procesar el pago: ' + data.message);
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = '<?php echo URLROOT; ?>/users/dashboard#notificaciones';
+                            location.reload();
+                        } else {
+                            alert('Error: ' + data.message);
+                            if (btn) {
+                                btn.disabled = false;
+                                btn.innerHTML = '<i class="fa-solid fa-credit-card"></i> <?php echo _t('dashboard.payments.btn_pay_culqi'); ?>';
                             }
-                        });
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Error en fetch:", err);
+                        alert('Hubo un error de conexión al procesar el pago.');
+                        if (btn) {
+                            btn.disabled = false;
+                            btn.innerHTML = '<i class="fa-solid fa-credit-card"></i> <?php echo _t('dashboard.payments.btn_pay_culqi'); ?>';
+                        }
+                    });
                 } else {
-                    console.log(Culqi.error);
+                    console.error("Culqi Error:", Culqi.error);
                     alert(Culqi.error.user_message);
                 }
             }
@@ -3031,7 +3090,7 @@
                     <div class="profile-info">
                         <h3><?php echo htmlspecialchars($data['user']->name); ?></h3>
                         <span
-                            class="profile-badge"><?php echo _t('login.type_' . $data['user']->user_category); ?></span>
+                            class="profile-badge"><?php echo _t('login.type_' . strtolower(str_replace(['ñ', ' '], ['n', '_'], $data['user']->user_category))); ?></span>
                     </div>
                 </div>
                 <div class="profile-body">

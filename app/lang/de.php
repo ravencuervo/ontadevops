@@ -62,6 +62,7 @@ return [
     'type_extranjero' => 'AUSLÄNDER',
     'type_nacional' => 'NATIONAL',
     'type_acompanante' => 'BEGLEITPERSON',
+    'type_' => 'Keine Kategorie',
     'category_label' => 'Kategorien',
   ],
   'comite' => [

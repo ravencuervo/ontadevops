@@ -57,10 +57,12 @@ return [
     'btn_submit' => 'Se connecter',
     'no_account' => 'Pas de compte?',
     'register_link' => 'Inscrivez-vous ici',
-    'type_miembro' => 'MEMBRE ONTA',
+    'type_miembro_onta' => 'MEMBRE ONTA',
     'type_no_miembro' => 'NON-MEMBRE',
     'type_extranjero' => 'ÉTRANGER',
     'type_nacional' => 'NATIONAL',
+    'type_acompanante' => 'ACCOMPAGNATEUR',
+    'type_' => 'Sans Catégorie',
     'category_label' => 'Catégories',
   ],
   'comite' => [

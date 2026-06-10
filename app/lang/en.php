@@ -105,6 +105,7 @@ return [
     'type_extranjero' => 'Foreigner',
     'type_nacional' => 'National',
     'type_acompanante' => 'Companion',
+    'type_' => 'No Category',
     'category_label' => 'Registration Category',
   ],
   'dashboard' => [
